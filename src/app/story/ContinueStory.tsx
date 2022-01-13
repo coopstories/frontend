@@ -19,6 +19,16 @@ const AccessStoryQuery = /* GraphQL */ `
   }
 `
 
+type AccessStoryResponse = {
+  accessStory: {
+    id: number
+    title: string
+    creatorName: string
+    createdAt: string
+    previousFragment: string
+  }
+}
+
 const ContinueStoryMutation = /* GraphQL */ `
   mutation (
     $id: Int!
@@ -38,6 +48,13 @@ const ContinueStoryMutation = /* GraphQL */ `
   }
 `
 
+type ContinueStoryResponse = {
+  continueStory: {
+    storyId: number
+    nextPassword: string
+  }
+}
+
 const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
   params,
 }) => {
@@ -48,7 +65,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
 
   const [
     { fetching: isLoadingStoryData, data: storyData, error: errorLoadingStory },
-  ] = useQuery({
+  ] = useQuery<AccessStoryResponse>({
     query: AccessStoryQuery,
     variables: { id: parseInt(params.storyId, 10), password },
     pause: !password,
@@ -57,7 +74,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
   const [
     { fetching: isContinuingStory, data: continueStoryData },
     continueStory,
-  ] = useMutation(ContinueStoryMutation)
+  ] = useMutation<ContinueStoryResponse>(ContinueStoryMutation)
 
   const { values, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
@@ -66,6 +83,10 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
     },
 
     onSubmit: (values) => {
+      if (!storyData) {
+        return
+      }
+
       continueStory({
         id: storyData.accessStory.id,
         password: password,
@@ -96,7 +117,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
         <p>Loading story...</p>
       ) : errorLoadingStory ? (
         <p>{errorLoadingStory.graphQLErrors[0].message}</p>
-      ) : (
+      ) : storyData ? (
         <>
           <h1 className="text-3xl text-gray-800 py-5">
             Continue "{storyData.accessStory.title}"
@@ -134,7 +155,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
             />
           </form>
         </>
-      )}
+      ) : null}
     </FormLayout>
   )
 }

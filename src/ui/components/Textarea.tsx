@@ -19,7 +19,7 @@ const Textarea: React.FC<TextareaProps> = ({
 }) => {
   return (
     <label className="block">
-      <span className="text-gray-700">{label}</span>
+      <span className="text-gray-700 text-lg">{label}</span>
       <textarea
         className="
           mt-1 block w-full rounded-md border-gray-300 shadow-sm

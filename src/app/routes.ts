@@ -21,3 +21,10 @@ export const createContinueStoryURL = (storyId: number, password: string) => {
 
   return `${base}${path}?password=${password}`
 }
+
+export const createFullStoryURL = (storyId: number, masterPassword: string) => {
+  const base = window.location.origin
+  const path = FULL_STORY_PAGE.linkTo({ storyId })
+
+  return `${base}${path}?masterPassword=${masterPassword}`
+}

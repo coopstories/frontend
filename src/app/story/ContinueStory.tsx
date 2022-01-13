@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react'
 import { useFormik } from 'formik'
 import { useMutation, useQuery } from 'urql'
-import { createContinueStoryURL } from '../routes'
+import FormLayout from '../../ui/layouts/FormLayout'
+import Input from '../../ui/components/Input'
+import Textarea from '../../ui/components/Textarea'
+import Button from '../../ui/components/Button'
+import SuccessMessage from '../../ui/components/SuccessMessage'
 
 const AccessStoryQuery = /* GraphQL */ `
   query ($id: Int!, $password: String!) {
@@ -42,7 +46,9 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
     return urlSearchParams.get('password')
   }, [])
 
-  const [{ fetching: isLoadingStoryData, data: storyData }] = useQuery({
+  const [
+    { fetching: isLoadingStoryData, data: storyData, error: errorLoadingStory },
+  ] = useQuery({
     query: AccessStoryQuery,
     variables: { id: parseInt(params.storyId, 10), password },
     pause: !password,
@@ -52,17 +58,6 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
     { fetching: isContinuingStory, data: continueStoryData },
     continueStory,
   ] = useMutation(ContinueStoryMutation)
-
-  const continuationLink = useMemo(() => {
-    if (!continueStoryData) {
-      return
-    }
-
-    return createContinueStoryURL(
-      continueStoryData.continueStory.storyId,
-      continueStoryData.continueStory.nextPassword,
-    )
-  }, [continueStoryData])
 
   const { values, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
@@ -81,57 +76,66 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
     },
   })
 
-  if (!password) {
-    return <p>Password is required!</p>
+  if (continueStoryData) {
+    return (
+      <FormLayout>
+        <SuccessMessage
+          title="Story continued successfully!"
+          storyId={continueStoryData.continueStory.storyId}
+          nextPassword={continueStoryData.continueStory.nextPassword}
+        />
+      </FormLayout>
+    )
   }
 
-  if (isLoadingStoryData || isContinuingStory) {
-    return <p>Loading story...</p>
-  }
+  return (
+    <FormLayout>
+      {!password ? (
+        <p>Password is required!</p>
+      ) : isLoadingStoryData ? (
+        <p>Loading story...</p>
+      ) : errorLoadingStory ? (
+        <p>{errorLoadingStory.graphQLErrors[0].message}</p>
+      ) : (
+        <>
+          <h1 className="text-3xl text-gray-800 py-5">
+            Continue "{storyData.accessStory.title}"
+          </h1>
 
-  return continueStoryData ? (
-    <div>
-      <p>Story continued successfully!!</p>
+          <form className="space-y-6 font-serif mt-3" onSubmit={handleSubmit}>
+            <Input
+              label="Name"
+              name="contributor"
+              value={values.contributor}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
 
-      <p>
-        Share this link with your friends for continuing the story:
-        <a href={continuationLink}>{continuationLink}</a>
-      </p>
-    </div>
-  ) : (
-    <form onSubmit={handleSubmit}>
-      <h2>{storyData.accessStory.title}</h2>
+            <div className="my-5 p-5 rounded-lg font-serif bg-light-primary">
+              <p className="mb-4">The story goes something like...</p>
 
-      <label htmlFor="contributor">Contributor</label>
-      <input
-        id="contributor"
-        name="contributor"
-        type="text"
-        onChange={handleChange}
-        value={values.contributor}
-      />
+              <pre className="whitespace-pre-wrap">
+                {storyData.accessStory.previousFragment}
+              </pre>
+            </div>
 
-      <br />
-      <br />
-      <p>
-        Continue your story from:{' '}
-        <i>{storyData.accessStory.previousFragment}</i>
-      </p>
+            <Textarea
+              label="Continue the story"
+              name="content"
+              value={values.content}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
 
-      <label htmlFor="content">Content</label>
-      <textarea
-        id="content"
-        name="content"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.content}
-      ></textarea>
-
-      <br />
-      <br />
-
-      <input type="submit" value="Submit" />
-    </form>
+            <Button
+              title="Continue story"
+              isLoading={isContinuingStory}
+              onClick={handleSubmit}
+            />
+          </form>
+        </>
+      )}
+    </FormLayout>
   )
 }
 

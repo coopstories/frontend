@@ -28,7 +28,7 @@ const STEPS = [
 
 const HowItWorks: React.FC = () => {
   return (
-    <section className="py-16 px-10 space-y-6 bg-gray-100">
+    <section className="py-16 px-5 sm:px-10 space-y-6 bg-gray-100">
       <h3 className="text-grey-800 text-5xl text-center">How it works</h3>
 
       {STEPS.map(({ IconComponent, heading, description }) => (

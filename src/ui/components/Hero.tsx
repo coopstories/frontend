@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as StoriesIcon } from '../../assets/icons/stories_2.svg'
+import { ReactComponent as StoriesIcon } from '../../assets/icons/stories.svg'
 
 const Hero: React.FC = () => {
   return (

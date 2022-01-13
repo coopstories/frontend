@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { useMutation } from 'urql'
 import Input from '../../ui/components/Input'
-import FormLayout from '../../ui/layouts/FormLayout'
+import BasicLayout from '../../ui/layouts/BasicLayout'
 import Button from '../../ui/components/Button'
 import SuccessMessage from '../../ui/components/SuccessMessage'
 import Textarea from '../../ui/components/Textarea'
@@ -41,19 +41,19 @@ const CreateStory: React.FC = () => {
 
   if (createStoryResult) {
     return (
-      <FormLayout>
+      <BasicLayout>
         <SuccessMessage
           title="Story created successfully!"
           storyId={createStoryResult.createStory.storyId}
           nextPassword={createStoryResult.createStory.nextPassword}
           masterPassword={createStoryResult.createStory.masterPassword}
         />
-      </FormLayout>
+      </BasicLayout>
     )
   }
 
   return (
-    <FormLayout>
+    <BasicLayout>
       <>
         <h1 className="text-3xl text-gray-800 py-5">Create a new story</h1>
 
@@ -89,7 +89,7 @@ const CreateStory: React.FC = () => {
           />
         </form>
       </>
-    </FormLayout>
+    </BasicLayout>
   )
 }
 

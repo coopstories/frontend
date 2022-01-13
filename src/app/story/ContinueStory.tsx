@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useFormik } from 'formik'
 import { useMutation, useQuery } from 'urql'
-import FormLayout from '../../ui/layouts/FormLayout'
+import BasicLayout from '../../ui/layouts/BasicLayout'
 import Input from '../../ui/components/Input'
 import Textarea from '../../ui/components/Textarea'
 import Button from '../../ui/components/Button'
@@ -99,18 +99,18 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
 
   if (continueStoryData) {
     return (
-      <FormLayout>
+      <BasicLayout>
         <SuccessMessage
           title="Story continued successfully!"
           storyId={continueStoryData.continueStory.storyId}
           nextPassword={continueStoryData.continueStory.nextPassword}
         />
-      </FormLayout>
+      </BasicLayout>
     )
   }
 
   return (
-    <FormLayout>
+    <BasicLayout>
       {!password ? (
         <p>Password is required!</p>
       ) : isLoadingStoryData ? (
@@ -156,7 +156,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
           </form>
         </>
       ) : null}
-    </FormLayout>
+    </BasicLayout>
   )
 }
 

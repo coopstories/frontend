@@ -5,25 +5,20 @@ import Landing from './Landing'
 import CreateStory from './story/CreateStory'
 import FullStoryPage from './story/FullStory'
 import ContinueStory from './story/ContinueStory'
-import Footer from '../ui/components/Footer'
 
 const App: React.FC = () => {
   return (
-    <div>
-      <Switch>
-        <Route path={routes.LANDING.path} component={Landing} />
+    <Switch>
+      <Route path={routes.LANDING.path} component={Landing} />
 
-        <Route path={routes.CREATE_STORY.path} component={CreateStory} />
+      <Route path={routes.CREATE_STORY.path} component={CreateStory} />
 
-        <Route path={routes.FULL_STORY_PAGE.path} component={FullStoryPage} />
+      <Route path={routes.FULL_STORY_PAGE.path} component={FullStoryPage} />
 
-        <Route path={routes.STORY_PAGE.path} component={ContinueStory} />
+      <Route path={routes.STORY_PAGE.path} component={ContinueStory} />
 
-        <Route component={() => <Redirect to={routes.LANDING.path} />} />
-      </Switch>
-
-      <Footer />
-    </div>
+      <Route component={() => <Redirect to={routes.LANDING.path} />} />
+    </Switch>
   )
 }
 

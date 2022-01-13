@@ -3,6 +3,7 @@ import NavBar from '../ui/components/NavBar'
 import Hero from '../ui/components/Hero'
 import HowItWorks from '../ui/components/HowItWorks'
 import Button from '../ui/components/Button'
+import Footer from '../ui/components/Footer'
 import { CREATE_STORY } from './routes'
 
 const Landing: React.FC = () => {
@@ -16,6 +17,8 @@ const Landing: React.FC = () => {
 
       <Hero />
       <HowItWorks />
+
+      <Footer />
     </>
   )
 }

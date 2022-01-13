@@ -1,14 +1,22 @@
 import React from 'react'
-import { Link } from 'wouter'
+import NavBar from '../ui/components/NavBar'
+import Hero from '../ui/components/Hero'
+import HowItWorks from '../ui/components/HowItWorks'
+import Button from '../ui/components/Button'
 import { CREATE_STORY } from './routes'
 
 const Landing: React.FC = () => {
   return (
-    <div>
-      <p>Hello world!</p>
+    <>
+      <NavBar
+        actionsSlot={
+          <Button title="Create a story" to={CREATE_STORY.linkTo()} />
+        }
+      />
 
-      <Link href={CREATE_STORY.linkTo()}>Go to story creator</Link>
-    </div>
+      <Hero />
+      <HowItWorks />
+    </>
   )
 }
 

@@ -4,7 +4,13 @@ import { ReactComponent as StoriesIcon } from '../../assets/icons/stories.svg'
 const Hero: React.FC = () => {
   return (
     <section className="py-6 px-5 sm:px-10 bg-secondary">
-      <div className="max-w-4xl mx-auto flex justify-around">
+      <div
+        className="
+          max-w-4xl mx-auto 
+          flex flex-col items-center
+          sm:flex-row sm:justify-around
+          "
+      >
         <StoriesIcon
           className="
             h-40 sm:h-52 md:h-64 

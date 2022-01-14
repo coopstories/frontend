@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 import { useMutation, useQuery } from 'urql'
 import BasicLayout from '../../ui/layouts/BasicLayout'
 import Input from '../../ui/components/Input'
 import Textarea from '../../ui/components/Textarea'
 import Button from '../../ui/components/Button'
 import SuccessMessage from '../../ui/components/SuccessMessage'
+import { useValidationErrors } from '../validations'
 
 const AccessStoryQuery = /* GraphQL */ `
   query ($id: Int!, $password: String!) {
@@ -58,6 +60,8 @@ type ContinueStoryResponse = {
 const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
   params,
 }) => {
+  const validationErrors = useValidationErrors()
+
   const password = useMemo(() => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     return urlSearchParams.get('password')
@@ -76,26 +80,38 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
     continueStory,
   ] = useMutation<ContinueStoryResponse>(ContinueStoryMutation)
 
-  const { values, handleChange, handleBlur, handleSubmit } = useFormik({
-    initialValues: {
-      contributor: '',
-      content: '',
-    },
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+    useFormik({
+      initialValues: {
+        contributor: '',
+        content: '',
+      },
 
-    onSubmit: (values) => {
-      if (!storyData) {
-        return
-      }
+      validateOnBlur: true,
+      validationSchema: Yup.object().shape({
+        contributor: Yup.string()
+          .min(3, validationErrors.minLength)
+          .required(validationErrors.required),
 
-      continueStory({
-        id: storyData.accessStory.id,
-        password: password,
+        content: Yup.string()
+          .min(180, validationErrors.minLength)
+          .required(validationErrors.required),
+      }),
 
-        contributor: values.contributor,
-        content: values.content,
-      })
-    },
-  })
+      onSubmit: (values) => {
+        if (!storyData) {
+          return
+        }
+
+        continueStory({
+          id: storyData.accessStory.id,
+          password: password,
+
+          contributor: values.contributor,
+          content: values.content,
+        })
+      },
+    })
 
   if (continueStoryData) {
     return (
@@ -128,6 +144,11 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
               label="Name"
               name="contributor"
               value={values.contributor}
+              errorMessage={
+                touched.contributor && !!errors.contributor
+                  ? errors.contributor
+                  : undefined
+              }
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -144,6 +165,9 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
               label="Continue the story"
               name="content"
               value={values.content}
+              errorMessage={
+                touched.content && !!errors.content ? errors.content : undefined
+              }
               onChange={handleChange}
               onBlur={handleBlur}
             />

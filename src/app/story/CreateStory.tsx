@@ -1,11 +1,13 @@
 import React from 'react'
 import { useFormik } from 'formik'
+import * as Yup from 'yup'
 import { useMutation } from 'urql'
 import Input from '../../ui/components/Input'
 import BasicLayout from '../../ui/layouts/BasicLayout'
 import Button from '../../ui/components/Button'
 import SuccessMessage from '../../ui/components/SuccessMessage'
 import Textarea from '../../ui/components/Textarea'
+import { useValidationErrors } from '../validations'
 
 const CreateStoryMutation = /* GraphQL */ `
   mutation ($title: String!, $creator: String!, $content: String!) {
@@ -22,22 +24,40 @@ type CreateStoryResult = {
 }
 
 const CreateStory: React.FC = () => {
+  const validationErrors = useValidationErrors()
+
   const [{ fetching, data: createStoryResult }, createStory] = useMutation<
     CreateStoryResult,
     { title: string; creator: string; content: string }
   >(CreateStoryMutation)
 
-  const { values, handleChange, handleBlur, handleSubmit } = useFormik({
-    initialValues: {
-      title: '',
-      creator: '',
-      content: '',
-    },
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+    useFormik({
+      initialValues: {
+        title: '',
+        creator: '',
+        content: '',
+      },
 
-    onSubmit: (values) => {
-      createStory(values)
-    },
-  })
+      validateOnBlur: true,
+      validationSchema: Yup.object().shape({
+        title: Yup.string()
+          .min(3, validationErrors.minLength)
+          .required(validationErrors.required),
+
+        creator: Yup.string()
+          .min(3, validationErrors.minLength)
+          .required(validationErrors.required),
+
+        content: Yup.string()
+          .min(180, validationErrors.minLength)
+          .required(validationErrors.required),
+      }),
+
+      onSubmit: (values) => {
+        createStory(values)
+      },
+    })
 
   if (createStoryResult) {
     return (
@@ -62,6 +82,9 @@ const CreateStory: React.FC = () => {
             label="Story title"
             name="title"
             value={values.title}
+            errorMessage={
+              touched.title && !!errors.title ? errors.title : undefined
+            }
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -70,6 +93,9 @@ const CreateStory: React.FC = () => {
             label="Creator"
             name="creator"
             value={values.creator}
+            errorMessage={
+              touched.creator && !!errors.creator ? errors.creator : undefined
+            }
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -78,6 +104,9 @@ const CreateStory: React.FC = () => {
             label="Start your story"
             name="content"
             value={values.content}
+            errorMessage={
+              touched.content && !!errors.content ? errors.content : undefined
+            }
             onChange={handleChange}
             onBlur={handleBlur}
           />

@@ -1,3 +1,6 @@
 {
-  "hello:world": "Hello world!!"
+  "hello:world": "Hello world!!",
+
+  "errors:required": "This field is required.",
+  "errors:min-length": "This field should have at least {min} characters"
 }

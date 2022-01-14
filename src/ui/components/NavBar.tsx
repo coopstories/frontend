@@ -13,7 +13,7 @@ const NavBar: React.FC<{ actionsSlot?: React.ReactNode }> = ({
       <div className="max-w-4xl mx-auto flex justify-between content-center">
         <Link href={LANDING.linkTo()}>
           <h1 className="font-sans text-3xl text-gray-50 cursor-pointer font-bold">
-            {t('noun:coostories')}
+            {t('noun:coopstories')}
           </h1>
         </Link>
 

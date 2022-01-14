@@ -1,7 +1,7 @@
 {
   "hello:world": "Hello world!!",
 
-  "noun:coostories": "CooStories",
+  "noun:coopstories": "CoopStories",
 
   "action:create-story": "Create story",
   "action:continue-story": "Continue story",

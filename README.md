@@ -1,4 +1,4 @@
-# CooStories
+# CoopStories
 
 Write stories with friends.
 

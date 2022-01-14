@@ -10,12 +10,12 @@
   "heading:continue-story": "Continue with \"{storyTitle}\"",
   "heading:story-title": "\"{storyTitle}\" by {creator}",
 
-  "how-to:step1-heading": "Create a Story",
-  "how-to:step1-description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium vel molestiae fugit magni modi molestias excepturi aliquam rerum quibusdam eos officiis nesciunt natus quaerat, dolores voluptatibus ducimus deserunt ut voluptatem.",
-  "how-to:step2-heading": "Let your friends continue the story",
-  "how-to:step2-description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium vel molestiae fugit magni modi molestias excepturi aliquam rerum quibusdam eos officiis nesciunt natus quaerat, dolores voluptatibus ducimus deserunt ut voluptatem.",
-  "how-to:step3-heading": "Read the story together",
-  "how-to:step3-description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium vel molestiae fugit magni modi molestias excepturi aliquam rerum quibusdam eos officiis nesciunt natus quaerat, dolores voluptatibus ducimus deserunt ut voluptatem.",
+  "how-to:step1-heading": "Start a Story",
+  "how-to:step1-description": "The game goes like this, click in the \"Create story\" button and you'll see a form to start a new story, write a start for your story and set a title to it. Then, we'll generate 2 links for you, one allows you to continue the story and the other unlocks the full story.",
+  "how-to:step2-heading": "Your friends continue the Story",
+  "how-to:step2-description": "To continue the story, you have to share the continuance link to a friend. The funny part is that this friend will see only a part of what you wrote. Now your friend has to imagine what is the story about and continue it. When finishes, we'll create another link to keep writing the story (max 50 contributions). ",
+  "how-to:step3-heading": "Read the Story together",
+  "how-to:step3-description": "When you run out of friends, you can use the other link generated after creating the story and read the full story. The results are very random. Want more? You can play to guess who wrote which part and see which person guesses more.",
 
   "footer:created-by": "Created with ❤️ by <link>@MonkeyAndres</link>",
 

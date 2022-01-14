@@ -1,4 +1,6 @@
 import React, { useMemo } from 'react'
+import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg'
+import { ReactComponent as WarningIcon } from '../../assets/icons/warning.svg'
 import { createContinueStoryURL, createFullStoryURL } from '../../app/routes'
 
 type SuccessMessageProps = {
@@ -37,7 +39,12 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({
       {!!masterPassword && !!fullStoryLink ? (
         <article className="px-4 py-5 rounded-lg text-lg font-serif bg-light-primary mb-4">
           <p className="font-bold mb-3">
-            IMPORTANT! Save this link for when you want to read the full story.
+            <WarningIcon className="w-5 h-5 inline-block mr-1" />
+
+            <span>
+              IMPORTANT! Save this link for when you want to read the full
+              story.
+            </span>
           </p>
 
           <a className="text-secondary" href={fullStoryLink}>
@@ -48,7 +55,11 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({
 
       <article className="px-4 py-5 rounded-lg text-lg font-serif bg-green-mid">
         <p className="font-bold">
-          Share this link with your friends for continuing the story
+          <ShareIcon className="w-5 h-5 inline-block mr-1" />
+
+          <span>
+            Share this link with your friends for continuing the story
+          </span>
         </p>
 
         <a className="text-gray-50" href={continuationLink}>

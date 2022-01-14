@@ -1,0 +1,45 @@
+{
+  "noun:coopstories": "CoopStories",
+
+  "action:create-story": "Crear historia",
+  "action:continue-story": "Continuar historia",
+
+  "heading:hero": "Escribe historias \n con tus <mark>amigos.</mark>",
+  "heading:how-it-works": "Como funciona",
+  "heading:create-new-story": "Crear una nueva historia",
+  "heading:continue-story": "Continua con \"{storyTitle}\"",
+  "heading:story-title": "\"{storyTitle}\" por {creator}",
+
+  "how-to:step1-heading": "Empieza la historia",
+  "how-to:step1-description": "Empieza a jugar haciendo clic en el botón \"Crear historia\". Al acceder verás un formulario, escribe el comienzo de la historia y pon un título. Cuando completes el formulario vamos a generarte dos enlaces, uno te servirá para continuar la historia y el otro para leer la historia completa.",
+  "how-to:step2-heading": "Tus amigos continúan la historia",
+  "how-to:step2-description": "Para seguir la historia manda el enlace generado a un amigo. La gracia es que al acceder, él va a ver solo un fragmento de lo que tú escribiste. Ahora, tu amigo tiene que imaginar que cuenta la historia y continuarla. Cuando acabe le daremos otro enlace para que la historia pueda continuar (max 50 contribuciones).",
+  "how-to:step3-heading": "Leed la historia juntos",
+  "how-to:step3-description": "Cuando acaben de escribir todos tus amigos podéis usar el otro enlace generado al crear la historia para leer la historia completa. Los resultados son bastante graciosos. ¿Quieres más? Jugad a adivinar quien ha escrito cada parte de la historia.",
+
+  "footer:created-by": "Creado con ❤️ por <link>@MonkeyAndres</link>",
+
+  "message:story-created-success": "Historia creada correctamente!",
+  "message:story-continued-success": "La historia sigue!",
+  "message:password-required": "Se requiere contraseña para acceder",
+  "message:loading-story": "Cargando historia...",
+  "message:story-introduction": "La historia dice algo así...",
+  "message:n-characters": "{count} caracteres",
+  "message:save-full-story-link": "IMPORTANTE! Guarda este enlace para leer la historia completa.",
+  "message:share-link-with-friends": "Comparte este enlace con amigos para que la historia siga.",
+
+  "label:story-title": "Título de la historia",
+  "label:creator": "Creador",
+  "label:start-story": "Comienza la historia",
+  "label:contributor": "Quien eres?",
+  "label:continue-story": "Continua la historia",
+
+  "placeholder:story-title": "Mi increíble historia",
+  "placeholder:creator": "Tu Nombre",
+  "placeholder:start-story": "Erase una vez...",
+  "placeholder:contributor": "Tu Nombre",
+  "placeholder:continue-story": "...y entonces apareció un dragón mágico...",
+
+  "error:required": "Este campo es requerido.",
+  "error:min-length": "Debes introducir al menos {min} caracteres."
+}

@@ -34,7 +34,7 @@ const HowItWorks: React.FC = () => {
       </h3>
 
       {STEPS.map(({ IconComponent, headingTextKey, descriptionTextKey }) => (
-        <article className="bg-primary text-gray-50 py-4 px-6 rounded-xl shadow-md max-w-2xl mx-auto">
+        <article key={headingTextKey} className="bg-primary text-gray-50 py-4 px-6 rounded-xl shadow-md max-w-2xl mx-auto">
           <h4 className="font-serif text-2xl py-3 space-x-3 flex items-center">
             <IconComponent className="h-8 w-8 inline-block" />
             <span>{t(headingTextKey)}</span>

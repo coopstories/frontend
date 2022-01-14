@@ -28,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build && cp ./build/index.html ./build/200.html",
+    "deploy": "surge ./build https://coopstories.surge.sh"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +53,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",
+    "surge": "^0.23.1",
     "tailwindcss": "^3.0.13"
   }
 }

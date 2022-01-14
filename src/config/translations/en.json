@@ -1,6 +1,47 @@
 {
   "hello:world": "Hello world!!",
 
-  "errors:required": "This field is required.",
-  "errors:min-length": "This field should have at least {min} characters"
+  "noun:coostories": "CooStories",
+
+  "action:create-story": "Create story",
+  "action:continue-story": "Continue story",
+
+  "heading:hero": "Write stories \n with <mark>friends.</mark>",
+  "heading:how-it-works": "How it Works",
+  "heading:create-new-story": "Create a new story",
+  "heading:continue-story": "Continue with \"{storyTitle}\"",
+  "heading:story-title": "\"{storyTitle}\" by {creator}",
+
+  "how-to:step1-heading": "Create a Story",
+  "how-to:step1-description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium vel molestiae fugit magni modi molestias excepturi aliquam rerum quibusdam eos officiis nesciunt natus quaerat, dolores voluptatibus ducimus deserunt ut voluptatem.",
+  "how-to:step2-heading": "Let your friends continue the story",
+  "how-to:step2-description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium vel molestiae fugit magni modi molestias excepturi aliquam rerum quibusdam eos officiis nesciunt natus quaerat, dolores voluptatibus ducimus deserunt ut voluptatem.",
+  "how-to:step3-heading": "Read the story together",
+  "how-to:step3-description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium vel molestiae fugit magni modi molestias excepturi aliquam rerum quibusdam eos officiis nesciunt natus quaerat, dolores voluptatibus ducimus deserunt ut voluptatem.",
+
+  "footer:created-by": "Created with ❤️ by <link>@MonkeyAndres</link>",
+
+  "message:story-created-success": "Story created successfully!",
+  "message:story-continued-success": "The story goes on!",
+  "message:password-required": "Password is required!",
+  "message:loading-story": "Loading story...",
+  "message:story-introduction": "The story goes something like...",
+  "message:n-characters": "{count} characters",
+  "message:save-full-story-link": "IMPORTANT! Save this link for when you want to read the full story.",
+  "message:share-link-with-friends": "Share this link with your friends for continuing the story",
+
+  "label:story-title": "Title your story",
+  "label:creator": "Creator",
+  "label:start-story": "Start your story",
+  "label:contributor": "Who are you?",
+  "label:continue-story": "Continue the story",
+
+  "placeholder:story-title": "My awesome story",
+  "placeholder:creator": "Your Name",
+  "placeholder:start-story": "Once upon a time...",
+  "placeholder:contributor": "Your Name",
+  "placeholder:continue-story": "...and then a magic dragon appears...",
+
+  "error:required": "This field is required.",
+  "error:min-length": "This field should have at least {min} characters."
 }

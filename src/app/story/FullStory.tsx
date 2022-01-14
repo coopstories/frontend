@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { useQuery } from 'urql'
+import useTranslations from '../../hooks/useTranslations'
 import Button from '../../ui/components/Button'
 import BasicLayout from '../../ui/layouts/BasicLayout'
 import { CREATE_STORY } from '../routes'
@@ -37,6 +38,8 @@ type FullStoryResponse = {
 const FullStoryPage: React.FC<{ params: { storyId: string } }> = ({
   params,
 }) => {
+  const t = useTranslations()
+
   const masterPassword = useMemo(() => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     return urlSearchParams.get('masterPassword')
@@ -53,17 +56,20 @@ const FullStoryPage: React.FC<{ params: { storyId: string } }> = ({
   return (
     <BasicLayout
       customNavBarActions={
-        <Button title="Create new story" to={CREATE_STORY.linkTo()} />
+        <Button title={t('action:create-story')} to={CREATE_STORY.linkTo()} />
       }
     >
       {fetching ? (
-        <p>Loading full story...</p>
+        <p className="font-serif text-lg">{t('message:loading-story')}</p>
       ) : error ? (
-        <p>{error.graphQLErrors[0].message}</p>
+        <p className="font-serif text-lg">{error.graphQLErrors[0].message}</p>
       ) : data ? (
         <>
           <h1 className="text-3xl mb-6">
-            "{data.accessFullStory.title}" by {data.accessFullStory.creatorName}
+            {t('heading:story-title', {
+              storyTitle: data.accessFullStory.title,
+              creator: data.accessFullStory.creatorName,
+            })}
           </h1>
 
           <div className="space-y-3">

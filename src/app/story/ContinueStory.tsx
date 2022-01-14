@@ -8,6 +8,7 @@ import Textarea from '../../ui/components/Textarea'
 import Button from '../../ui/components/Button'
 import SuccessMessage from '../../ui/components/SuccessMessage'
 import { useValidationErrors } from '../validations'
+import useTranslations from '../../hooks/useTranslations'
 
 const AccessStoryQuery = /* GraphQL */ `
   query ($id: Int!, $password: String!) {
@@ -60,6 +61,7 @@ type ContinueStoryResponse = {
 const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
   params,
 }) => {
+  const t = useTranslations()
   const validationErrors = useValidationErrors()
 
   const password = useMemo(() => {
@@ -117,7 +119,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
     return (
       <BasicLayout>
         <SuccessMessage
-          title="Story continued successfully!"
+          title={t('message:story-continued-success')}
           storyId={continueStoryData.continueStory.storyId}
           nextPassword={continueStoryData.continueStory.nextPassword}
         />
@@ -128,22 +130,27 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
   return (
     <BasicLayout>
       {!password ? (
-        <p>Password is required!</p>
+        <p className="font-serif text-lg">{t('message:password-required')}</p>
       ) : isLoadingStoryData ? (
-        <p>Loading story...</p>
+        <p className="font-serif text-lg">{t('message:loading-story')}</p>
       ) : errorLoadingStory ? (
-        <p>{errorLoadingStory.graphQLErrors[0].message}</p>
+        <p className="font-serif text-lg">
+          {errorLoadingStory.graphQLErrors[0].message}
+        </p>
       ) : storyData ? (
         <>
           <h1 className="text-3xl text-gray-800 py-5">
-            Continue "{storyData.accessStory.title}"
+            {t('heading:continue-story', {
+              storyTitle: storyData.accessStory.title,
+            })}
           </h1>
 
           <form className="space-y-6 font-serif mt-3" onSubmit={handleSubmit}>
             <Input
-              label="Name"
+              label={t('label:contributor')}
               name="contributor"
               value={values.contributor}
+              placeholder={t('placeholder:contributor')}
               errorMessage={
                 touched.contributor && !!errors.contributor
                   ? errors.contributor
@@ -154,7 +161,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
             />
 
             <div className="my-5 p-5 rounded-lg font-serif bg-light-primary">
-              <p className="mb-4">The story goes something like...</p>
+              <p className="mb-4">{t('message:story-introduction')}</p>
 
               <pre className="whitespace-pre-wrap">
                 {storyData.accessStory.previousFragment}
@@ -162,9 +169,10 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
             </div>
 
             <Textarea
-              label="Continue the story"
+              label={t('label:continue-story')}
               name="content"
               value={values.content}
+              placeholder={t('placeholder:continue-story')}
               errorMessage={
                 touched.content && !!errors.content ? errors.content : undefined
               }
@@ -173,7 +181,7 @@ const ContinueStory: React.FC<{ params: { storyId: string } }> = ({
             />
 
             <Button
-              title="Continue story"
+              title={t('action:continue-story')}
               isLoading={isContinuingStory}
               onClick={handleSubmit}
             />

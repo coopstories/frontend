@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { cx } from '../../utils'
+import useTranslations from '../../hooks/useTranslations'
 
 type TextareaProps = {
   label: string
@@ -20,6 +21,7 @@ const Textarea: React.FC<TextareaProps> = ({
   onChange,
   onBlur,
 }) => {
+  const t = useTranslations()
   const characterCount = useMemo(() => value.length, [value])
 
   return (
@@ -32,7 +34,9 @@ const Textarea: React.FC<TextareaProps> = ({
         ])}
       >
         <span>{label}</span>
-        <span className="text-sm">{characterCount} characters</span>
+        <span className="text-sm">
+          {t('message:n-characters', { count: characterCount })}
+        </span>
       </p>
 
       <textarea

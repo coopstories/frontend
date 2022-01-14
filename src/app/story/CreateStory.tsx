@@ -7,6 +7,7 @@ import BasicLayout from '../../ui/layouts/BasicLayout'
 import Button from '../../ui/components/Button'
 import SuccessMessage from '../../ui/components/SuccessMessage'
 import Textarea from '../../ui/components/Textarea'
+import useTranslations from '../../hooks/useTranslations'
 import { useValidationErrors } from '../validations'
 
 const CreateStoryMutation = /* GraphQL */ `
@@ -24,6 +25,7 @@ type CreateStoryResult = {
 }
 
 const CreateStory: React.FC = () => {
+  const t = useTranslations()
   const validationErrors = useValidationErrors()
 
   const [{ fetching, data: createStoryResult }, createStory] = useMutation<
@@ -63,7 +65,7 @@ const CreateStory: React.FC = () => {
     return (
       <BasicLayout>
         <SuccessMessage
-          title="Story created successfully!"
+          title={t('message:story-created-success')}
           storyId={createStoryResult.createStory.storyId}
           nextPassword={createStoryResult.createStory.nextPassword}
           masterPassword={createStoryResult.createStory.masterPassword}
@@ -75,13 +77,16 @@ const CreateStory: React.FC = () => {
   return (
     <BasicLayout>
       <>
-        <h1 className="text-3xl text-gray-800 py-5">Create a new story</h1>
+        <h1 className="text-3xl text-gray-800 py-5">
+          {t('heading:create-new-story')}
+        </h1>
 
         <form className="space-y-6 font-serif mt-3" onSubmit={handleSubmit}>
           <Input
-            label="Story title"
+            label={t('label:story-title')}
             name="title"
             value={values.title}
+            placeholder={t('placeholder:story-title')}
             errorMessage={
               touched.title && !!errors.title ? errors.title : undefined
             }
@@ -90,9 +95,10 @@ const CreateStory: React.FC = () => {
           />
 
           <Input
-            label="Creator"
+            label={t('label:creator')}
             name="creator"
             value={values.creator}
+            placeholder={t('placeholder:creator')}
             errorMessage={
               touched.creator && !!errors.creator ? errors.creator : undefined
             }
@@ -101,9 +107,10 @@ const CreateStory: React.FC = () => {
           />
 
           <Textarea
-            label="Start your story"
+            label={t('label:start-story')}
             name="content"
             value={values.content}
+            placeholder={t('placeholder:start-story')}
             errorMessage={
               touched.content && !!errors.content ? errors.content : undefined
             }
@@ -112,7 +119,7 @@ const CreateStory: React.FC = () => {
           />
 
           <Button
-            title="Create story"
+            title={t('action:create-story')}
             isLoading={fetching}
             onClick={handleSubmit}
           />

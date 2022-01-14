@@ -1,7 +1,10 @@
 import React from 'react'
 import { ReactComponent as StoriesIcon } from '../../assets/icons/stories.svg'
+import useTranslations from '../../hooks/useTranslations'
 
 const Hero: React.FC = () => {
+  const t = useTranslations()
+
   return (
     <section className="py-6 px-5 sm:px-10 bg-secondary">
       <div
@@ -20,13 +23,16 @@ const Hero: React.FC = () => {
 
         <h2
           className="
-            text-gray-50 self-center
+            text-gray-50 self-center whitespace-pre
             text-4xl sm:text-5xl md:text-6xl
             leading-snug sm:leading-normal md:leading-normal
           "
         >
-          Write stories <br />
-          with <span className="bg-primary text-gray-100">friends.</span>
+          {t('heading:hero', {
+            mark: (value: string) => (
+              <span className="bg-primary text-gray-100">{value}</span>
+            ),
+          })}
         </h2>
       </div>
     </section>

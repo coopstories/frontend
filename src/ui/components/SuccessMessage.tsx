@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg'
 import { ReactComponent as WarningIcon } from '../../assets/icons/warning.svg'
 import { createContinueStoryURL, createFullStoryURL } from '../../app/routes'
+import useTranslations from '../../hooks/useTranslations'
 
 type SuccessMessageProps = {
   title: string
@@ -16,6 +17,8 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({
   nextPassword,
   masterPassword,
 }) => {
+  const t = useTranslations()
+
   const continuationLink = useMemo(() => {
     if (!storyId || !nextPassword) {
       return
@@ -41,10 +44,7 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({
           <p className="font-bold mb-3">
             <WarningIcon className="w-5 h-5 inline-block mr-1" />
 
-            <span>
-              IMPORTANT! Save this link for when you want to read the full
-              story.
-            </span>
+            <span>{t('message:save-full-story-link')}</span>
           </p>
 
           <a className="text-secondary" href={fullStoryLink}>
@@ -57,9 +57,7 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({
         <p className="font-bold">
           <ShareIcon className="w-5 h-5 inline-block mr-1" />
 
-          <span>
-            Share this link with your friends for continuing the story
-          </span>
+          <span>{t('message:share-link-with-friends')}</span>
         </p>
 
         <a className="text-gray-50" href={continuationLink}>

@@ -5,13 +5,16 @@ import HowItWorks from '../ui/components/HowItWorks'
 import Button from '../ui/components/Button'
 import Footer from '../ui/components/Footer'
 import { CREATE_STORY } from './routes'
+import useTranslations from '../hooks/useTranslations'
 
 const Landing: React.FC = () => {
+  const t = useTranslations()
+
   return (
     <>
       <NavBar
         actionsSlot={
-          <Button title="Create a story" to={CREATE_STORY.linkTo()} />
+          <Button title={t('action:create-story')} to={CREATE_STORY.linkTo()} />
         }
       />
 

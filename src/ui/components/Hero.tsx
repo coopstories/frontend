@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
       >
         <StoriesIcon
           className="
-            h-40 sm:h-52 md:h-64 
+            h-40 sm:h-52 md:h-64 py-3
           fill-primary self-center
           "
         />

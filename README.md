@@ -1,5 +1,7 @@
 # CoopStories
 
+[![Deploy](https://github.com/coopstories/frontend/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/coopstories/frontend/actions/workflows/deploy.yml)
+
 Write stories with friends.
 
 ## Prequisites

@@ -4,10 +4,7 @@ import { createClient, Provider as UrqlProvider } from 'urql'
 import { Router } from 'wouter'
 import { setupI18n } from '../libs/i18n'
 
-const GRAPHQL_API =
-  process.env.NODE_ENV === 'production'
-    ? 'https://coopstories.herokuapp.com/graphql'
-    : 'http://localhost:4000/graphql'
+const GRAPHQL_API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000'
 
 const AppProvider: React.FC = ({ children }) => {
   const { locale, messages } = useMemo(() => setupI18n(), [])

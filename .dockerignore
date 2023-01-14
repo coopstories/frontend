@@ -1,0 +1,6 @@
+.github
+docs
+node_modules
+.env.example
+.prettierrc
+README.md

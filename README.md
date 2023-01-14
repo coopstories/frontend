@@ -14,17 +14,24 @@ Write stories with friends.
 - Yarn
 - [Backend running](https://github.com/coopstories/backend)
 
-## Setup
+## Usage
 
 ```bash
 # Install dependencies
 yarn install
+
+# Set environment variables
+cp .env.example .env
 
 # Start frontend
 yarn start
 
 # Open your browser on localhost:3000
 ```
+
+## Deployment
+
+[See backend deployment section.](https://github.com/coopstories/backend)
 
 ## About the project
 

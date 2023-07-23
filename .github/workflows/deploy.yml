@@ -21,7 +21,7 @@ jobs:
 
       - name: Build project
         env:
-          REACT_APP_BACKEND_URL: ${{ env.BACKEND_URL }}
+          REACT_APP_BACKEND_URL: coopstories-api.monkeyandres.com
         run: yarn build
 
       - name: Deploy to GitHub Pages

@@ -31,7 +31,19 @@ yarn start
 
 ## Deployment
 
-[See backend deployment section.](https://github.com/coopstories/backend)
+The app is built using Docker. To run the frontend in production follow the steps bellow.
+
+```bash
+# 1. Build the image (specify your own BACKEND_URL)
+docker build --build-arg BACKEND_URL=https://{BACKEND_URL} -t coopstories/frontend .
+
+# 2. Start a container from this image
+docker run -p 80:80 --name coopstories_frontend coopstories/frontend
+
+# 3. The frontend is available at localhost:80
+```
+
+This only runs the frontend, for the backend you still need to do more stuff. [See backend deployment section.](https://github.com/coopstories/backend)
 
 ## About the project
 

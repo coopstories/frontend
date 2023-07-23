@@ -27,4 +27,4 @@ jobs:
           IMAGE_TAG: ghcr.io/${{ github.repository_owner }}/frontend:${{ github.sha }}
         run: |
           docker buildx create --use
-          docker buildx build --build-arg BACKEND_URL=http://backend:4000 --push --tag $IMAGE_TAG .
+          docker buildx build --build-arg BACKEND_URL=https://coopstories-api.monkeyandres.com --push --tag $IMAGE_TAG .
